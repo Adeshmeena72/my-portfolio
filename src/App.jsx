@@ -1,4 +1,5 @@
 // src/App.jsx
+import { useState } from 'react';
 import './index.css';
 
 function SectionHeader({ title, pill, subtitle, id }) {
@@ -13,18 +14,26 @@ function SectionHeader({ title, pill, subtitle, id }) {
 }
 
 export default function App() {
+  const [navOpen, setNavOpen] = useState(false);
+
+  const handleNavClick = () => {
+    setNavOpen(false); // close menu when a link is clicked
+  };
+
   return (
     <div id="top">
       {/* NAVBAR */}
       <header className="navbar">
         <div className="nav-inner">
-          <a href="#top" className="nav-brand">
+          <a href="#top" className="nav-brand" onClick={handleNavClick}>
             <div className="brand-logo">AM</div>
             <div className="brand-text">
               <span>Adesh Meena</span>
             </div>
           </a>
-          <nav className="nav-links">
+
+          {/* Desktop nav */}
+          <nav className="nav-links nav-links-desktop">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
             <a href="#experience">Experience</a>
@@ -32,7 +41,28 @@ export default function App() {
             <a href="#achievements">Achievements</a>
             <a href="#contact">Contact</a>
           </nav>
+
+          {/* Mobile toggle */}
+          <button
+            className="nav-toggle"
+            onClick={() => setNavOpen((prev) => !prev)}
+            aria-label="Toggle navigation"
+          >
+            <span className={`bar ${navOpen ? 'open' : ''}`}></span>
+            <span className={`bar ${navOpen ? 'open' : ''}`}></span>
+            <span className={`bar ${navOpen ? 'open' : ''}`}></span>
+          </button>
         </div>
+
+        {/* Mobile nav menu */}
+        <nav className={`nav-links-mobile ${navOpen ? 'nav-open' : ''}`}>
+          <a href="#about" onClick={handleNavClick}>About</a>
+          <a href="#skills" onClick={handleNavClick}>Skills</a>
+          <a href="#experience" onClick={handleNavClick}>Experience</a>
+          <a href="#projects" onClick={handleNavClick}>Projects</a>
+          <a href="#achievements" onClick={handleNavClick}>Achievements</a>
+          <a href="#contact" onClick={handleNavClick}>Contact</a>
+        </nav>
       </header>
 
       {/* MAIN */}
@@ -62,8 +92,12 @@ export default function App() {
               <a href="#projects" className="btn btn-primary">
                 View Projects →
               </a>
-              {/* Put your PDF in public/ and name it exactly like below */}
-              <a href="/Adesh_Meena_SDE1_Resume.pdf" className="btn btn-ghost" target="_blank" rel="noreferrer">
+              <a
+                href="/Adesh_Meena_SDE1_Resume.pdf"
+                className="btn btn-ghost"
+                target="_blank"
+                rel="noreferrer"
+              >
                 Download Resume
               </a>
             </div>
@@ -89,7 +123,6 @@ export default function App() {
                     <span>Student </span>
                   </div>
                   <div className="profile-tags">
-                    {/* <span className="tag">SDE /Web Dev</span> */}
                     <span className="tag tag-soft">IIT (BHU), Varanasi</span>
                   </div>
                 </div>
@@ -402,8 +435,8 @@ export default function App() {
               <h3>Quick summary</h3>
               <p>
                 I&apos;m looking for roles where I can work on real products, learn from
-                experienced engineers, and contribute to clean, reliable systems —
-                especially in AI-powered tools, fintech or platform engineering.
+                experienced engineers, and contribute to clean, reliable systems — especially
+                in AI-powered tools, fintech or platform engineering.
               </p>
 
               <div className="contact-list">
@@ -430,11 +463,15 @@ export default function App() {
               </div>
 
               <div className="social-links">
-                {/* Replace # with your actual profile URLs */}
                 <a href="https://github.com/Adeshmeena72" className="social-chip">GitHub</a>
                 <a href="https://www.linkedin.com/in/adesh-meena-39020b258/" className="social-chip">LinkedIn</a>
                 <a href="https://leetcode.com/u/adeshmeena72/" className="social-chip">LeetCode / Codeforces</a>
-                <a href="/Adesh_Meena_SDE1_Resume.pdf" className="social-chip" target="_blank" rel="noreferrer">
+                <a
+                  href="/Adesh_Meena_SDE1_Resume.pdf"
+                  className="social-chip"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   Resume (PDF)
                 </a>
               </div>
