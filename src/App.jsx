@@ -156,7 +156,7 @@ export default function App() {
                   </div>
                   <div className="status-indicator">
                     <span className="status-dot" />
-                    <span>Actively seeking SDE / Intern roles</span>
+                    <span>Actively seeking SDE / FT roles</span>
                   </div>
                 </div>
               </div>
